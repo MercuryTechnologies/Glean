@@ -63,7 +63,7 @@
 #
 
 CABAL_BIN=cabal
-PWD := $(shell /bin/pwd)
+PWD := $(shell pwd)
 
 # There's a lot of parallelism in the schema-generated code
 # If you have >=16G and >=4 cores, trying passing these:
@@ -98,6 +98,8 @@ BYTECODE_GEN= \
 BYTECODE_SRCS= \
 	$(wildcard glean/bytecode/*/Glean/Bytecode/*/*.hs) \
 	$(wildcard glean/bytecode/Glean/Bytecode/*.hs)
+
+THRIFT_COMPILE = thrift-compiler
 
 all:: glean.cabal thrift $(BYTECODE_GEN) gen-schema thrift-schema-hs glean
 
@@ -244,12 +246,13 @@ thrift-hs:: thrift-hsthrift-hs thrift-glean-hs
 
 .PHONY: thrift-compiler
 thrift-compiler::
-	(cd hsthrift && make CABAL="$(CABAL)" compiler)
-	$(eval THRIFT_COMPILE := $$(shell $$(CABAL) -v0 list-bin exe:thrift-compiler))
+	echo meow
+	# (cd hsthrift && make CABAL="$(CABAL)" compiler)
 
 .PHONY: thrift-hsthrift-hs
 thrift-hsthrift-hs::
-	(cd hsthrift && make CABAL="$(CABAL)" thrift-hs)
+	# (cd hsthrift && make CABAL="$(CABAL)" thrift-hs)
+	echo meow
 
 .PHONY: gen-schema
 gen-schema :: glean.cabal cxx-libraries

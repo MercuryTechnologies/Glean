@@ -42,6 +42,8 @@ import System.FilePath
 import Control.Monad.Extra (findM, whenJust, mapMaybeM)
 
 import qualified GHC
+import qualified GHC.Utils.Outputable as GHC
+import qualified GHC.Utils.Trace as GHC
 import qualified GHC.Types.Avail as GHC (availNames)
 import qualified GHC.Types.Basic as GHC (TupleSort(..))
 #if !MIN_VERSION_ghc(9,6,0)

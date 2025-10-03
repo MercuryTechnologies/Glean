@@ -66,7 +66,7 @@ endef
 # Call define_library for each library
 $(foreach lib, $(CXX_LIBRARIES), $(eval $(call define_library,$(lib))))
 
-GTEST_PKGCONFIG_DEPS = libfolly libunwind libglog icu-uc gflags libxxhash gtest_main
+GTEST_PKGCONFIG_DEPS = libfolly libunwind icu-uc gflags libxxhash gtest_main
 
 GTEST_PKGCONFIG_LIBS := $(shell pkg-config --libs $(GTEST_PKGCONFIG_DEPS))
 

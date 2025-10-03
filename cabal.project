@@ -1,14 +1,14 @@
 -- Copyright (c) Facebook, Inc. and its affiliates.
 
 packages:
-    hsthrift/common/util/fb-util.cabal
-    hsthrift/common/github/fb-stubs.cabal
-    hsthrift/common/mangle/mangle.cabal
-    hsthrift/lib/thrift-lib.cabal
-    hsthrift/compiler/thrift-compiler.cabal
-    hsthrift/haxl/thrift-haxl.cabal
-    hsthrift/tests/thrift-tests.cabal
-    hsthrift/http/thrift-http.cabal
+    -- hsthrift/common/util/fb-util.cabal
+    -- hsthrift/common/github/fb-stubs.cabal
+    -- hsthrift/common/mangle/mangle.cabal
+    -- hsthrift/lib/thrift-lib.cabal
+    -- hsthrift/compiler/thrift-compiler.cabal
+    -- hsthrift/haxl/thrift-haxl.cabal
+    -- hsthrift/tests/thrift-tests.cabal
+    -- hsthrift/http/thrift-http.cabal
     glean.cabal
     glean/lang/clang/glean-clang.cabal
 
@@ -22,7 +22,8 @@ allow-newer: haskeline:base
 
 -- develop with -Werror on, for consistency with internal Meta CI.
 program-options
-    ghc-options: -Werror
+    -- ghc-options: -Werror
+    ghc-options: -j +RTS -A128m -n2m -RTS
 
 package fb-util
     flags: +folly
