@@ -10,6 +10,7 @@ packages:
     -- hsthrift/tests/thrift-tests.cabal
     -- hsthrift/http/thrift-http.cabal
     glean.cabal
+    cbrowse/cbrowse.cabal
     glean/lang/clang/glean-clang.cabal
 
 optional-packages:

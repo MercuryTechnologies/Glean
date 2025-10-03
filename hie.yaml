@@ -1,2 +1,4 @@
 cradle:
   cabal:
+    - path: ./cbrowse
+      component: cbrowse:exe:cbrowse-backend

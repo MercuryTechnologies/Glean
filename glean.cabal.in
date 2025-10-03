@@ -2663,3 +2663,4 @@ test-suite glass-regression-thrift
     main-is: Glean/Glass/Regression/Thrift.hs
     ghc-options: -main-is Glean.Glass.Regression.Thrift
     buildable: False
+

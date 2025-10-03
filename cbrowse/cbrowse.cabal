@@ -1,0 +1,138 @@
+cabal-version:       3.6
+name:                cbrowse
+version: 0.1.0.0
+build-type:          Simple
+
+common fb-haskell
+    default-language: Haskell2010
+    default-extensions:
+        BangPatterns
+        BinaryLiterals
+        DataKinds
+        DeriveDataTypeable
+        DeriveGeneric
+        EmptyCase
+        ExistentialQuantification
+        FlexibleContexts
+        FlexibleInstances
+        GADTs
+        GeneralizedNewtypeDeriving
+        LambdaCase
+        MultiParamTypeClasses
+        MultiWayIf
+        NamedFieldPuns
+        NoMonomorphismRestriction
+        OverloadedStrings
+        PatternSynonyms
+        RankNTypes
+        RecordWildCards
+        ScopedTypeVariables
+        StandaloneDeriving
+        TupleSections
+        TypeFamilies
+        TypeSynonymInstances
+        NondecreasingIndentation
+        TypeOperators
+
+    ghc-options: -Wall -Wno-orphans -Wno-name-shadowing
+    if flag(opt)
+       ghc-options: -O2
+
+common fb-cpp
+  cxx-options: -std=c++17 -Wno-nullability-completeness
+  if !flag(clang)
+     cxx-options: -fcoroutines
+  if arch(x86_64)
+     cxx-options: -march=haswell
+  if flag(opt)
+     cxx-options: -O3 -DNDEBUG
+     cxx-options: -O3
+
+flag clang
+     default: False
+
+flag opt
+     default: False
+
+
+common exe
+  ghc-options: -threaded -rtsopts
+
+common deps
+    build-depends:
+        fb-util,
+        thrift-lib,
+        HUnit,
+        safe,
+        safe-exceptions,
+        scientific,
+        text-show,
+        uuid,
+        extra,
+        aeson,
+        data-default,
+        temporary,
+        clock,
+        STMonadTrans,
+        utf8-string,
+        optparse-applicative,
+        ansi-terminal,
+        json,
+        random,
+        regex-base,
+        regex-pcre,
+        base >=4.11.1 && <4.21,
+        array ^>=0.5.2.0,
+        async ^>=2.2.1,
+        attoparsec >=0.13.2.3 && <0.15,
+        attoparsec-aeson >= 2.1 && < 2.3,
+        unordered-containers ^>=0.2.9.0,
+        containers,
+        contravariant ^>=1.5,
+        text >=1.2.3.0 && < 2.2,
+        bytestring >=0.10.8.2 && <0.13,
+        vector >=0.12.0.1 && <0.14,
+        transformers >= 0.5.6 && < 0.7,
+        network-uri ^>=2.6.1.0,
+        stm ^>=2.5.0.0,
+        directory ^>=1.3.1.5,
+        filepath >=1.4.2 && < 1.6,
+        exceptions ^>=0.10.0,
+        mtl >= 2.2.2 && < 2.4,
+        unix >= 2.7.2.2 && < 2.9,
+        process ^>=1.6.3.0,
+        prettyprinter >=1.2.1 && <1.8,
+        time >=1.8.0.2 && <1.13,
+        binary ^>=0.8.5.1,
+        deepseq >=1.4.3.0 && < 1.6,
+        hashable >=1.2.7.0 && < 1.6,
+        tar >=0.5.1.0 && < 0.7,
+        ghc-prim >=0.5.2.0 && <0.12,
+        parsec ^>=3.1.13.0,
+        haxl >= 2.1.2.0 && < 2.6,
+        hinotify ^>= 0.4.1
+
+
+executable cbrowse-backend
+    import: fb-haskell, fb-cpp, deps, exe
+    hs-source-dirs: .
+    main-is: Cbrowse/Main.hs
+    ghc-options: -main-is Cbrowse.Main
+    extra-libraries: stdc++
+    other-modules:
+        Cbrowse.App,
+        Cbrowse.Hyperlinker,
+        Cbrowse.Foundation,
+        Cbrowse.Handlers
+    build-depends:
+        glean:lib,
+        glean:schema,
+        glean:util,
+        glean:client-hs,
+        http-types,
+        wai,
+        warp,
+        yesod-core,
+        unliftio,
+        aeson
+
