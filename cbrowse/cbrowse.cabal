@@ -134,5 +134,6 @@ executable cbrowse-backend
         warp,
         yesod-core,
         unliftio,
-        aeson
+        aeson,
+        wai-cors
 
