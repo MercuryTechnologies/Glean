@@ -7,6 +7,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE ViewPatterns #-}
+{-# OPTIONS_GHC -Wno-unused-imports #-}
 
 module Cbrowse.Hyperlinker where
 
@@ -64,9 +65,9 @@ import Options.Applicative qualified as O
 import System.FilePath
 import UnliftIO.Async (mapConcurrently)
 import Yesod.Core hiding ((.=))
-import Yesod.Core.Types
 
 import Cbrowse.App
+import Cbrowse.Api.Types
 
 data TargetLoc
   = TargetLine !Int
@@ -86,29 +87,6 @@ data Hyperlink = Hyperlink
 instance NFData Hyperlink where
   rnf x = x `seq` ()
 
-{- | Hyperlink for the API. Uses line/col because we can compute those quickly
-server side and only make the client deal with UTF-16 nonsense within a
-line.
--}
-data HyperlinkApi = HyperlinkApi
-  { beginLine :: !Word64
-  , beginCol :: !Word64
-  , endLine :: !Word64
-  , endCol :: !Word64
-  , target :: !TargetApi
-  }
-  deriving stock (Show)
-
-data TargetApi = TargetApi
-  { path :: !Text
-  , line :: !Word64
-  , col :: !Word64
-  }
-  deriving stock (Show)
-
-$(A.deriveJSON A.defaultOptions ''TargetApi)
-$(A.deriveJSON A.defaultOptions ''HyperlinkApi)
-
 targetToApi :: LineOffsets -> Target -> TargetApi
 targetToApi lineOffsets Target{..} =
   let
@@ -120,6 +98,7 @@ targetToApi lineOffsets Target{..} =
       { path = Text.decodeUtf8 targetPath
       , line
       , col
+      , name = Text.decodeUtf8 targetKind
       }
 
 hyperlinkToApi :: LineOffsets -> LineOffsets -> Hyperlink -> HyperlinkApi

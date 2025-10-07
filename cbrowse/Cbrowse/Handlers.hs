@@ -64,6 +64,7 @@ import Yesod.Core.Types
 
 import Cbrowse.App
 import Cbrowse.Hyperlinker
+import Cbrowse.Api.Types
 
 getRootR :: Handler (JSONResponse Text)
 getRootR = do

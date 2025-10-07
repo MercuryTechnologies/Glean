@@ -2,3 +2,147 @@ cradle:
   cabal:
     - path: ./cbrowse
       component: cbrowse:exe:cbrowse-backend
+
+    # - path: "glean/github"
+    #   component: "glean:lib:stubs"
+    #
+    # - path: "glean/github"
+    #   component: "glean:lib:logger"
+    #
+    # - path: "glean/config/gen-hs2"
+    #   component: "glean:lib:config"
+    #
+    # - path: "glean/config/server/gen-hs2"
+    #   component: "glean:lib:config"
+    #
+    # - path: "glean/config/client/gen-hs2"
+    #   component: "glean:lib:config"
+    #
+    # - path: "glean/github"
+    #   component: "glean:lib:defaultconfigs"
+    #
+    # - path: "thrift/annotation/gen-hs2"
+    #   component: "glean:lib:thrift-annotation"
+    #
+    # - path: "glean/github/if/gen-hs2"
+    #   component: "glean:lib:if-fb303-hs"
+    #
+    # - path: "glean/if/gen-hs2"
+    #   component: "glean:lib:if-glean-hs"
+    #
+    # - path: "glean/if/index/gen-hs2"
+    #   component: "glean:lib:if-index-hs"
+    #
+    # - path: "glean/if/internal/gen-hs2"
+    #   component: "glean:lib:if-internal-hs"
+    #
+    # - path: "glean/util"
+    #   component: "glean:lib:util"
+    #
+    # - path: "glean/hs"
+    #   component: "glean:lib:core"
+    #
+    # - path: "glean/db"
+    #   component: "glean:lib:db"
+    #
+    # - path: "glean/client/hs"
+    #   component: "glean:lib:client-hs"
+    #
+    # - path: "glean/client/hs/local"
+    #   component: "glean:lib:client-hs-local"
+    #
+    # - path: "glean/interprocess/hs"
+    #   component: "glean:lib:interprocess"
+    #
+    # - path: "glean/schema/hs"
+    #   component: "glean:lib:schema"
+    #
+    # - path: "glean/schema/thrift/gen-hs2"
+    #   component: "glean:lib:schema"
+    #
+    # - path: "glean/haxl"
+    #   component: "glean:lib:haxl-datasource"
+    #
+    # - path: "glean/bytecode/def"
+    #   component: "glean:lib:bytecode-instruction"
+    #
+    # - path: "glean/bytecode"
+    #   component: "glean:lib:bytecode"
+    #
+    # - path: "glean/lib"
+    #   component: "glean:lib:lib-derive"
+    #
+    # - path: "glean/lib"
+    #   component: "glean:lib:lib"
+    #
+    # - path: "glean/test/unit"
+    #   component: "glean:lib:test-unit"
+    #
+    # - path: "glean/server"
+    #   component: "glean:lib:handler"
+    #
+    # - path: "glean/shell"
+    #   component: "glean:lib:shell-lib"
+    #
+    # - path: "glean/lang/clang"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/flow"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/go"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/hack"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/haskell"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/java-lsif"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/lsif/indexer"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/scip/indexer"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/swift"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/python-scip"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/dotnet-scip"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/rust-lsif"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/rust-scip"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/lang/typescript"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/index"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/index/list"
+    #   component: "glean:lib:indexers"
+    #
+    # - path: "glean/tools/gleancli/plugin"
+    #   component: "glean:lib:cli-types"
+    #
+    # - path: "glean/lang/lsif"
+    #   component: "glean:lib:lsif"
+    #
+    # - path: "glean/lang/scip"
+    #   component: "glean:lib:scip"
+    #
+    # - path: "glean/lang/scip/proto"
+    #   component: "glean:lib:if-proto-scip-hs"
+    #
+    # - path: "glean/glass"
+    #   component: "glean:lib:glass-lib"

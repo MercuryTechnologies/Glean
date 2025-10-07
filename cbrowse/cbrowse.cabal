@@ -123,7 +123,9 @@ executable cbrowse-backend
         Cbrowse.App,
         Cbrowse.Hyperlinker,
         Cbrowse.Foundation,
-        Cbrowse.Handlers
+        Cbrowse.Handlers,
+        Cbrowse.Api.Types,
+        Cbrowse.References
     build-depends:
         glean:lib,
         glean:schema,
