@@ -379,7 +379,7 @@ library rts
         glean/rts/validate.h
     -- __atomic_is_lock_free missing with clang
     extra-libraries: atomic
-    pkgconfig-depends: libunwind, libglog, icu-uc, gflags, libxxhash
+    pkgconfig-depends: libunwind, libfolly, icu-uc, gflags, libxxhash
 
 library rocksdb
     import: fb-haskell, fb-cpp, deps, folly
