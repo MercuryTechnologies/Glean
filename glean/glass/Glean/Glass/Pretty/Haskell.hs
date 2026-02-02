@@ -35,6 +35,8 @@ import qualified GHC.Types.Basic as GHC (TupleSort(..))
 #if !MIN_VERSION_ghc(9,6,0)
 import qualified GHC.Types.Basic as GHC (PromotionFlag(..))
 #endif
+import GHC.Iface.Type (IfLclName (..))
+import GHC.Data.FastString (LexicalFastString (..))
 import qualified GHC.Types.Unique as GHC (getUnique)
 import qualified GHC.Types.Name as GHC (mkExternalName)
 import qualified GHC.Types.Name.Cache as GHC
@@ -99,7 +101,7 @@ prettyHaskellSignature opts entity = case entity of
 
 toIfaceType :: Hs.Type -> Glean.RepoHaxl u w GHC.IfaceType
 toIfaceType ty = Glean.keyOf ty >>= \case
-  Hs.Type_key_tyvar var -> return $ GHC.IfaceTyVar (textToFS var)
+  Hs.Type_key_tyvar var -> return $ GHC.IfaceTyVar (IfLclName (LexicalFastString (textToFS var)))
   Hs.Type_key_app (Hs.Type_app_ ty args) ->
     GHC.IfaceAppTy
       <$> toIfaceType ty
@@ -111,7 +113,7 @@ toIfaceType ty = Glean.keyOf ty >>= \case
   Hs.Type_key_forall (Hs.Type_forall_ name kind flag inner) -> do
     let af = toIfaceArgFlag flag
     k <- toIfaceType kind
-    GHC.IfaceForAllTy (GHC.Bndr (GHC.IfaceTvBndr (textToFS name, k)) af)
+    GHC.IfaceForAllTy (GHC.Bndr (GHC.IfaceTvBndr (IfLclName (LexicalFastString (textToFS name)), k)) af)
       <$> toIfaceType inner
   Hs.Type_key_fun (Hs.Type_fun_ mult arg res) -> do
     GHC.IfaceFunTy visArg
@@ -125,8 +127,8 @@ toIfaceType ty = Glean.keyOf ty >>= \case
       <*> toIfaceType res
   Hs.Type_key_lit lit -> GHC.IfaceLitTy <$> toIfaceLitType lit
   Hs.Type_key_cast ty -> toIfaceType ty
-  Hs.Type_key_coercion{} -> return $ GHC.IfaceTyVar "<coercion type>"
-  _ -> return $ GHC.IfaceTyVar "<unknown type>"
+  Hs.Type_key_coercion{} -> return $ GHC.IfaceTyVar (IfLclName (LexicalFastString "<coercion type>"))
+  _ -> return $ GHC.IfaceTyVar (IfLclName (LexicalFastString "<unknown type>"))
   where
 
 #if MIN_VERSION_ghc(9,6,0)
@@ -231,7 +233,7 @@ toIfaceLitType l = Glean.keyOf l >>= \case
   Hs.LitType_key_num n ->
     return $ GHC.IfaceNumTyLit (fromIntegral (Glean.fromNat n))
   Hs.LitType_key_str txt ->
-    return $ GHC.IfaceStrTyLit (textToFS txt)
+    return $ GHC.IfaceStrTyLit (LexicalFastString (textToFS txt))
   Hs.LitType_key_chr c ->
     return $ GHC.IfaceCharTyLit (chr (fromIntegral (Glean.fromNat c)))
   Hs.LitType_key_EMPTY{} ->

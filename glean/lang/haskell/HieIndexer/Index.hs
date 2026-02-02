@@ -43,6 +43,7 @@ import System.FilePath
 import Control.Monad.Extra (findM, whenJust, mapMaybeM)
 
 import qualified GHC
+import           GHC.Data.FastString
 import qualified GHC.Types.Avail as GHC (availNames)
 import qualified GHC.Types.Basic as GHC (TupleSort(..))
 #if !MIN_VERSION_ghc(9,6,0)
@@ -317,7 +318,7 @@ indexTypes unit typeArr = foldM go IntMap.empty (A.assocs typeArr)
               Hs.LitType_key_num (nat i)
           GHC.IfaceStrTyLit fs ->
             Glean.makeFact @Hs.LitType $
-              Hs.LitType_key_str (fsToText fs)
+              Hs.LitType_key_str (fsToText (getLexicalFastString fs))
           GHC.IfaceCharTyLit c ->
             Glean.makeFact @Hs.LitType $
               Hs.LitType_key_chr (nat (ord c))
